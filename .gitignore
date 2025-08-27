@@ -1,0 +1,5 @@
+.idea
+context.txt
+*.txt
+*.md
+.DS_Store
