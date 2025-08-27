@@ -21,7 +21,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            const offsetTop = target.offsetTop - 70;
+            const offsetTop = target.offsetTop - 90; // Increased offset for better clearance
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
@@ -38,10 +38,10 @@ window.addEventListener('scroll', () => {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
     if (scrollTop > 100) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1)';
+        navbar.style.background = '#ffffff';
+        navbar.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -1px rgb(0 0 0 / 0.06)';
     } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        navbar.style.background = '#ffffff';
         navbar.style.boxShadow = '0 1px 2px 0 rgb(0 0 0 / 0.05)';
     }
 
@@ -150,24 +150,15 @@ if (viewMoreBtn) {
     });
 }
 
-// Typing Effect for Hero Title
+// Fade in Hero Title (removed typing effect for professional appearance)
 const heroTitle = document.querySelector('.hero-title');
 if (heroTitle) {
-    const text = heroTitle.textContent;
-    heroTitle.textContent = '';
-    let index = 0;
-
-    function typeWriter() {
-        if (index < text.length) {
-            heroTitle.textContent += text.charAt(index);
-            index++;
-            setTimeout(typeWriter, 50);
-        }
-    }
-
-    // Start typing effect when page loads
+    heroTitle.style.opacity = '0';
     window.addEventListener('load', () => {
-        setTimeout(typeWriter, 500);
+        setTimeout(() => {
+            heroTitle.style.transition = 'opacity 1s ease';
+            heroTitle.style.opacity = '1';
+        }, 200);
     });
 }
 
